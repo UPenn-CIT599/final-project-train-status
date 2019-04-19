@@ -1,21 +1,22 @@
+package application;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Request {
 
 	String line;
 	String start;
 	String destination;
-	ArrayList<Integer> weekdays;
+	List<String> weekdays;
 	String arrivalTime;
 	String textTime;
 	
-	public Request (String line, String start, String destination, ArrayList<Integer> weekdays, String arrivalTime, String textTime) {
+	public Request (String line, String start, String destination, List<String> items, String arrivalTime, String textTime) {
 		this.line = line;
 		this.start = start;
 		this.destination = destination;
-		for (int i = 0; i < weekdays.size(); i++) {
-			this.weekdays.add(weekdays.get(i), i);
-		}
+		this.weekdays=items;
 		this.arrivalTime = arrivalTime;
 		this.textTime = textTime;
 	}
