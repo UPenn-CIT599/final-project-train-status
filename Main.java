@@ -125,18 +125,7 @@ public class Main extends Application {
 	      
 	      gridPane.setStyle("-fx-background-color: BEIGE;"); 
 	      
-	      /**
-	      textField1.setOnKeyPressed(new EventHandler<KeyEvent>() {
-		  
-		    //@Override
-		    public void handle(KeyEvent event) {
-		        if(event.getCode().equals(KeyCode.ENTER)) {
-		             // do something
-		            ph=KeyCode.ENTER;
-		        }
-		    }
-		});
-	      **/
+	      
 	     //Adding a Label
 	      final Label label = new Label();
 	      gridPane.setConstraints(label, 0, 8);
