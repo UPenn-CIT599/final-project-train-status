@@ -58,11 +58,8 @@ public class Main extends Application {
 	      //creating label Desired text time
 	      Text text7 = new Text("Desired text time");
 	      
-	      //Creating Text Filed for email        
+	           
 	      TextField textField1 = new TextField();       
-	      
-	      //Creating Text Filed for password        
-	      //PasswordField textField2 = new PasswordField(); 
 	      TextField textField2 = new TextField();   
 	      TextField textField3 = new TextField();   
 	      TextField textField4 = new TextField();   
