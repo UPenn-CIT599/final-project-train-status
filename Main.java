@@ -30,7 +30,7 @@ public class Main extends Application {
 	static String wkd;
 	static String darrivt;
 	static String dtextt;
-	static HashMap<String, Request> req = new HashMap<String, Request>();
+	//static HashMap<String, Request> req = new HashMap<String, Request>();
 	
 	public void start(Stage stage) {      
 	      //creating label Phone number 
@@ -186,8 +186,17 @@ public class Main extends Application {
 	      //Displaying the contents of the stage 
 	      stage.show(); 
 	      
-	   }     
+	   }  
 	
+	public static void main(String[] args) {
+		launch(args);
+		List<String> items = new ArrayList<String>(Arrays.asList(wkd.split(" , ")));
+		Request placeHolder = new Request(ln, dept, arri, items, darrivt, dtextt); 
+		placeHolder.addEntry(ph, placeHolder);
+		System.out.println("This number"+ph+' '+ln+' '+dept+' '+arri+' '+wkd+' '+darrivt+' '+dtextt);
+		//System.out.println("request is "+req);
+	}
+	/**
 	private static HashMap<String, Request> addEntry() {
 	    //splits the string on a delimiter defined as: zero or more whitespace, a literal comma, 
 	    //zero or more whitespace which will place the words into the list 
@@ -215,4 +224,5 @@ public class Main extends Application {
 		System.out.println("This number"+ph+' '+ln+' '+dept+' '+arri+' '+wkd+' '+darrivt+' '+dtextt);
 		System.out.println("request is "+req);
 	}
+	**/
 }
