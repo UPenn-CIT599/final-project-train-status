@@ -47,6 +47,7 @@ class RequestTest {
 	r.addEntry("12313", r);	
 	test.put("1213",r);
 	assertThat(r.containsKey("12313"));
+	r.equals(test);
     }
 
 }
