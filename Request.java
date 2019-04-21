@@ -11,6 +11,7 @@ public class Request {
 	List<String> weekdays;
 	String arrivalTime;
 	String textTime;
+	static HashMap<String, Request> req = new HashMap<String, Request>();
 	
 	public Request (String line, String start, String destination, List<String> items, String arrivalTime, String textTime) {
 		this.line = line;
@@ -21,6 +22,11 @@ public class Request {
 		this.textTime = textTime;
 	}
 	
+	HashMap<String, Request> addEntry(String ph,Request r) {
+	      
+	    req.put(ph, r);
+	    
+	    return req;
 	
 	
 }
