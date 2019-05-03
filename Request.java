@@ -10,14 +10,14 @@ public class Request {
 	String line;
 	String start;
 	String destination;
-	String arrivalTime;
+	//String arrivalTime;
 	String textTime;
 	
-	public Request (String line, String start, String destination, String arrivalTime, String textTime) {
+	public Request (String line, String start, String destination,  String textTime) {
 		this.line = line;
 		this.start = start;
 		this.destination = destination;
-		this.arrivalTime = arrivalTime;
+		//this.arrivalTime = arrivalTime;
 		this.textTime = textTime;
 	}
 
