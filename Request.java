@@ -10,7 +10,7 @@ public class Request {
 	String line;
 	String start;
 	String destination;
-	//String arrivalTime;
+	String arrivalTime;
 	String textTime;
 	
 	public Request (String line, String start, String destination,  String textTime) {
