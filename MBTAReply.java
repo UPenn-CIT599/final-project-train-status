@@ -8,29 +8,51 @@
 
 public class MBTAReply {
 	String line;
-	String start;
+	String station;
 	String direction;
-	String predictedArrivalTime;
+	String arrival;
+	String departure;
 	
-	public MBTAReply(String line, String start, String direction, String predictedArrivalTime) {
+	public MBTAReply(String line, String station, String direction, String arrivalTime, String departureTime) {
 		this.line = line;
-		this.start = start;
+		this.station = station;
 		this.direction = direction;
-		this.predictedArrivalTime = predictedArrivalTime;
+		this.arrival = arrivalTime;
+		this.departure = departureTime;
+	}
+
+	public String getLine() {
+		return line;
+	}
+
+	public String getStation() {
+		return station;
+	}
+
+	public String getDirection() {
+		return direction;
+	}
+
+	public String getArrival() {
+		return arrival;
+	}
+
+	public String getDeparture() {
+		return departure;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((arrival == null) ? 0 : arrival.hashCode());
+		result = prime * result + ((departure == null) ? 0 : departure.hashCode());
 		result = prime * result + ((direction == null) ? 0 : direction.hashCode());
 		result = prime * result + ((line == null) ? 0 : line.hashCode());
-		result = prime * result + ((predictedArrivalTime == null) ? 0 : predictedArrivalTime.hashCode());
-		result = prime * result + ((start == null) ? 0 : start.hashCode());
+		result = prime * result + ((station == null) ? 0 : station.hashCode());
 		return result;
 	}
 	
-	// implemented so that the Junit test know how to tell if two MBTAReply objects are identical
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -40,6 +62,16 @@ public class MBTAReply {
 		if (getClass() != obj.getClass())
 			return false;
 		MBTAReply other = (MBTAReply) obj;
+		if (arrival == null) {
+			if (other.arrival != null)
+				return false;
+		} else if (!arrival.equals(other.arrival))
+			return false;
+		if (departure == null) {
+			if (other.departure != null)
+				return false;
+		} else if (!departure.equals(other.departure))
+			return false;
 		if (direction == null) {
 			if (other.direction != null)
 				return false;
@@ -50,15 +82,10 @@ public class MBTAReply {
 				return false;
 		} else if (!line.equals(other.line))
 			return false;
-		if (predictedArrivalTime == null) {
-			if (other.predictedArrivalTime != null)
+		if (station == null) {
+			if (other.station != null)
 				return false;
-		} else if (!predictedArrivalTime.equals(other.predictedArrivalTime))
-			return false;
-		if (start == null) {
-			if (other.start != null)
-				return false;
-		} else if (!start.equals(other.start))
+		} else if (!station.equals(other.station))
 			return false;
 		return true;
 	}

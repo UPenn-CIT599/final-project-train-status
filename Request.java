@@ -7,29 +7,41 @@
 
 public class Request {
 
-	String line;
-	String start;
-	String destination;
-	String arrivalTime;
-	String textTime;
+	private String line;
+	private String station;
+	private String direction;
+	private String textTime;
 	
-	public Request (String line, String start, String destination, String arrivalTime, String textTime) {
+	public Request (String line, String station, String direction, String textTime) {
 		this.line = line;
-		this.start = start;
-		this.destination = destination;
-		this.arrivalTime = arrivalTime;
+		this.station = station;
+		this.direction = direction;
 		this.textTime = textTime;
 	}
 
-	// implemented so that the JUnit test knows how to tell if two Request objects are the same
+	public String getLine() {
+		return line;
+	}
+
+	public String getStation() {
+		return station;
+	}
+
+	public String getDirection() {
+		return direction;
+	}
+
+	public String getTextTime() {
+		return textTime;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((arrivalTime == null) ? 0 : arrivalTime.hashCode());
-		result = prime * result + ((destination == null) ? 0 : destination.hashCode());
+		result = prime * result + ((direction == null) ? 0 : direction.hashCode());
 		result = prime * result + ((line == null) ? 0 : line.hashCode());
-		result = prime * result + ((start == null) ? 0 : start.hashCode());
+		result = prime * result + ((station == null) ? 0 : station.hashCode());
 		result = prime * result + ((textTime == null) ? 0 : textTime.hashCode());
 		return result;
 	}
@@ -43,25 +55,20 @@ public class Request {
 		if (getClass() != obj.getClass())
 			return false;
 		Request other = (Request) obj;
-		if (arrivalTime == null) {
-			if (other.arrivalTime != null)
+		if (direction == null) {
+			if (other.direction != null)
 				return false;
-		} else if (!arrivalTime.equals(other.arrivalTime))
-			return false;
-		if (destination == null) {
-			if (other.destination != null)
-				return false;
-		} else if (!destination.equals(other.destination))
+		} else if (!direction.equals(other.direction))
 			return false;
 		if (line == null) {
 			if (other.line != null)
 				return false;
 		} else if (!line.equals(other.line))
 			return false;
-		if (start == null) {
-			if (other.start != null)
+		if (station == null) {
+			if (other.station != null)
 				return false;
-		} else if (!start.equals(other.start))
+		} else if (!station.equals(other.station))
 			return false;
 		if (textTime == null) {
 			if (other.textTime != null)

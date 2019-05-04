@@ -1,7 +1,8 @@
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
-
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 
@@ -20,6 +21,7 @@ public class MBTAService extends Service<Void> {
 	private final HashMap<String, Request> req; // holds all the phone numbers and requests
 	private GetData getData; 
 	private TextSender textSender;
+	private Time time = new Time();
 	 
 	public MBTAService(GetData getData, TextSender textSender) {
 		req = new HashMap<String, Request>();
@@ -39,10 +41,14 @@ public class MBTAService extends Service<Void> {
 	// send text message
 	public void send() {
 		for (Entry<String, Request> entry : req.entrySet()) {
-		    String phoneNumber = entry.getKey();
+		    
+			String phoneNumber = entry.getKey();
 		    Request request = entry.getValue();
-		    MBTAReply reply = getData.crawlMBTA(request);
-		    textSender.sendText(phoneNumber, reply);
+		    String userTextTime = request.getTextTime();
+		    if (time.rightTimeToText(userTextTime)) {
+			    ArrayList<MBTAReply> replies = getData.crawlMBTA(request);
+			    textSender.sendText(phoneNumber, replies);
+		    }
 		}
 	}
 	
@@ -50,11 +56,10 @@ public class MBTAService extends Service<Void> {
 		return req;
 	}
 	
+	
 	@Override
 	protected Task<Void> createTask() {
 		while (true) {
-			// turn every request from the hashmap into a MBTAReply object
-			
 			// send text message
 			send();
 			

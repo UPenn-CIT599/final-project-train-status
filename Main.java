@@ -207,6 +207,8 @@ public class Main extends Application {
 	
 	// runner 
 	public static void main(String[] args) throws InterruptedException {
-		Application.launch(args);
+		//Application.launch(args);
+		//new TextSenderImpl().sendText("16037276698", new MBTAReply("","","",""));
+		
 	}
 }
