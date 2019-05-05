@@ -1,6 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,8 +22,10 @@ class MBTAServiceTest {
 		  GetData getData = new GetData() {
 
 			@Override
-			public MBTAReply crawlMBTA(Request r) {
-				return new MBTAReply("Red", "South Station", "Alewife", "8am");
+			public ArrayList<MBTAReply> crawlMBTA(Request r) {
+				ArrayList<MBTAReply> replies = new ArrayList();
+				replies.add(new MBTAReply("Red", "1", "South Station", "Alewife", "8am"));
+				return replies;
 			}
 			  
 		  };
@@ -30,15 +33,15 @@ class MBTAServiceTest {
 		  TextSender textSender = new TextSender() {
 
 			@Override
-			public void sendText(String phoneNumber, MBTAReply reply) {
+			public void sendText(String phoneNumber, ArrayList<MBTAReply> reply) {
 				// add phone number and reply to check what was sent
-				sentTexts.put(phoneNumber, reply);
+				sentTexts.put(phoneNumber, reply.get(0));
 			}
 			  
 		  };
 		  
 		MBTAService service = new MBTAService(getData, textSender);
-		Request req = new Request("Red", "South Station", "Alewife", "8am", "730am");
+		Request req = new Request("Red", "South Station", "Alewife", "8am");
 		service.addEntry("6171234567",req);
 		HashMap<String, Request> modifiedHash = service.getHash();
 		
@@ -52,7 +55,7 @@ class MBTAServiceTest {
 		
 		// create the expected Hash
 		HashMap<String,MBTAReply> expectedSentHash = new HashMap<>();
-		expectedSentHash.put("6171234567",new MBTAReply("Red", "South Station", "Alewife", "8am"));
+		expectedSentHash.put("6171234567",new MBTAReply("Red", "1", "South Station", "Alewife", "8am"));
 		assertEquals(expectedSentHash, sentTexts);
 		
 		

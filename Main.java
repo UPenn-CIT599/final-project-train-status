@@ -1,3 +1,4 @@
+import java.time.Duration;
 import java.util.HashMap;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
@@ -32,9 +33,9 @@ public class Main extends Application {
     static String ph;
     static String ln;
     static String dept;
-    static String arri;
+    static String direction;
     static String dtextt;
-    static String id;
+    //static String id;
     static String dir;
     static HashMap<String, Request> req = new HashMap<String, Request>();
 
@@ -213,12 +214,12 @@ public class Main extends Application {
 		    ph = textField1.getText();
 		    ln = comboBox1.getSelectionModel().getSelectedItem().toString();
 		    dept = comboBox2.getSelectionModel().getSelectedItem().toString();
-		    arri = comboBox3.getSelectionModel().getSelectedItem().toString();
+		    direction = comboBox3.getSelectionModel().getSelectedItem().toString();
 		    dtextt = trainHour.getSelectionModel().getSelectedItem().toString() + ":"
 			    + trainMin.getSelectionModel().getSelectedItem().toString();
 		    
 	          // create a Request object to hold information
-	          Request request = new Request(ln, dept, arri, dtextt);
+	          Request request = new Request(ln, getId(dept), getDirection(direction), dtextt);
 	          
 	          // add Request object into hashtable stored in MBTAService object
 	          service.addEntry(ph, request);
@@ -226,6 +227,7 @@ public class Main extends Application {
 		} else {
 		    label.setText("You have not left a phone number.");
 		}
+
 	    }
 
 	});
@@ -244,7 +246,7 @@ public class Main extends Application {
 		ph = "";
 		ln = "";
 		dept = "";
-		arri = "";
+		direction = "";
 		dtextt = "";
 	    }
 	});
@@ -260,10 +262,13 @@ public class Main extends Application {
 
 	// Displaying the contents of the stage
 	stage.show();
-
+	
+	service.setPeriod(javafx.util.Duration.seconds(10));
+	service.start();
     }
 
     public static String getId(String dept) {
+    	String id = "";
 	if (dept.equals("Alewife")) {
 	    id = "place-alfcl";
 	}
@@ -360,20 +365,8 @@ public class Main extends Application {
 	return dir;
     }
 
-    private static HashMap<String, Request> addEntry() {
-
-	Request placeHolder = new Request(ln, getId(dept), getDirection(arri), dtextt);
-
-	req.put(ph, placeHolder);
-
-	return req;
-
-    }
-
     // runner
     public static void main(String[] args) throws InterruptedException {
-	Application.launch(args);
-	addEntry();
-	System.out.println("This number " + ph + ' ' + ln + ' ' + getId(dept) + ' ' + getDirection(arri) + ' ' + dtextt);
+    	Application.launch(args);
     }
 }

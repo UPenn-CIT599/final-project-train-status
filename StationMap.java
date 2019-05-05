@@ -13,6 +13,7 @@ public class StationMap {
 
 	HashMap<String, Tuple<Tuple<String, String>, Tuple<String, String>>> directionDecode ;
 	HashMap<String, String> stationDecode;
+	private char[] stationName;
 
 	public HashMap<String, Tuple<Tuple<String, String>, Tuple<String, String>>> getDirectionDecode() {
 		return directionDecode;
@@ -24,7 +25,9 @@ public class StationMap {
 	
 	public StationMap() {
 		directionDecode = new HashMap<>();
+		stationDecode = new HashMap<>();
 
+		
 		directionDecode.put("Red", new Tuple(new Tuple("0","Ashmont/Braintree"), new Tuple("1", "Alewife")));
 		directionDecode.put("Mattapan", new Tuple(new Tuple("0","Mattapan"), new Tuple("1", "Ashmont")));
 		directionDecode.put("Orange", new Tuple(new Tuple("0","Forest Hills"), new Tuple("1", "Oak Grove")));
@@ -34,6 +37,7 @@ public class StationMap {
 		directionDecode.put("Green-E", new Tuple(new Tuple("0","Heath Street"), new Tuple("1", "Lechmere")));
 		directionDecode.put("Blue", new Tuple(new Tuple("0","Bowdoin"), new Tuple("1", "Wonderland")));
 
+		
 		createStationDecode("Red");
 		createStationDecode("Blue");
 		createStationDecode("Orange");
@@ -54,13 +58,17 @@ public class StationMap {
 		//to the different things that appear before the colon.
 		for(int i=0;i<jArray.length();i++) {
 			// Each item in jArray is a JSONObject 
-			JSONObject innerJSON = new JSONObject(jArray.getJSONObject(i));
-			JSONArray attributesArray = innerJSON.getJSONArray("attributes");
+			JSONObject innerJSON = jArray.getJSONObject(i);
+			if (!innerJSON.has("attributes")) {
+				continue;
+			}
+			
+			JSONObject attributes = innerJSON.getJSONObject("attributes");
 
-			String stationName = attributesArray.getJSONObject(i).getString("name");
+			String stationName = attributes.getString("name");
 
-			String stationID = attributesArray.getJSONObject(i).getString("id");
-			stationDecode.put(stationName,  stationID);
+			String stationID = innerJSON.getString("id");
+			stationDecode.put(stationID,  stationName);
 
 		}
 		

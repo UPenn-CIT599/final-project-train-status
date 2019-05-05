@@ -7,6 +7,12 @@
 
 
 public class MBTAReply {
+	@Override
+	public String toString() {
+		return "MBTAReply [line=" + line + ", station=" + station + ", direction=" + direction + ", arrival=" + arrival
+				+ ", departure=" + departure + "]";
+	}
+
 	String line;
 	String station;
 	String direction;

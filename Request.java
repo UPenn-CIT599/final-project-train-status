@@ -7,6 +7,12 @@
 
 public class Request {
 
+	@Override
+	public String toString() {
+		return "Request [line=" + line + ", station=" + station + ", direction=" + direction + ", textTime=" + textTime
+				+ "]";
+	}
+
 	private String line;
 	private String station;
 	private String direction;

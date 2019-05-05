@@ -37,14 +37,18 @@ public class GetDataImpl implements GetData {
 		//to the different things that appear before the colon.
 		for(int i=0;i<jArray.length();i++) {
 			// Each item in jArray is a JSONObject 
-			JSONObject innerJSON = new JSONObject(jArray.getJSONObject(i));
-			JSONArray attributesArray = innerJSON.getJSONArray("attributes");
+			JSONObject innerJSON = jArray.getJSONObject(i);
 			
-			String arrivalTime = attributesArray.getJSONObject(i).getString("arrival_time");
-			arrivalTime = arrivalTime == "null"? "null": arrivalTime.substring(11, 15);
+			if (!innerJSON.has("attributes")) {
+				continue;
+			}
+			JSONObject attributes = innerJSON.getJSONObject("attributes");
 			
-			String departureTime = attributesArray.getJSONObject(i).getString("departure_time");
-			departureTime = departureTime == "null"? "null": departureTime.substring(11,15);
+			String arrivalTime = attributes.optString("arrival_time");
+			arrivalTime = arrivalTime.isEmpty() ? null : arrivalTime.substring(11, 16);
+			
+			String departureTime = attributes.optString("departure_time");
+			departureTime = departureTime.isEmpty() ? null : departureTime.substring(11,16);
 			
 			MBTAReply reply= new MBTAReply(r.getLine(), r.getStation(), r.getDirection(), arrivalTime, departureTime);
 			MBTAReplies.add(reply);
@@ -57,7 +61,8 @@ public class GetDataImpl implements GetData {
 		String urlLine = r.getLine();
 		String urlStation = r.getStation();
 		String urlDirection = r.getDirection();
-		String fullURL = String.format("https://api-v3.mbta.com//predictions?filter[route]=%s&filter[stop]=%s&filter[direction_id]=%s&sort=arrival_time",
+		String sortCriterion = endStop(urlStation)? "arrival_time" : "departure_time";
+		String fullURL = String.format("https://api-v3.mbta.com//predictions?filter[route]=%s&filter[stop]=%s&filter[direction_id]=%s&sort="+sortCriterion,
 			urlLine, urlStation, urlDirection);
 		try {
 			urlObj = new URL(fullURL);
@@ -78,6 +83,11 @@ public class GetDataImpl implements GetData {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	private boolean endStop(String station) {
+		return station == "place-forhl" || station == "place-ogmnl" || station == "place-bomnl" || station == "place-wondl" || 
+				station == "place-alfcl" || station == "place-asmnl";
 	}
 
 }
