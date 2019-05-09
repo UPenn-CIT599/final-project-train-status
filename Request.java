@@ -1,8 +1,6 @@
-/*
+/**
  * @author Pammi
- * This class is a data structure used to hold information about the request,
- * such as the line, the starting station, the destination station, the arrivalTime (e.g. 8am, when the user wants to board the train at the station)
- * and textTime (e.g. 7.40am, if the user needs 20 minutes to walk from home to the starting station)
+ * This class is a data structure used to hold information about the request
  */
 
 public class Request {

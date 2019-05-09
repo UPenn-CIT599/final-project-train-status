@@ -1,8 +1,8 @@
-/*
- * @author Pammi
- * This class is a data structure used to hold information about the response from calling MBTA's API functions
- * including the line, the starting station, the destination station, the arrivalTime (e.g. 8am, when the user wants to board the train at the station)
- * and textTime (e.g. 7.40am, if the user needs 20 minutes to walk from home to the starting station)
+/**
+ * @author Pammi Yeung
+ * This class is a data structure used to hold information in the response 
+ * from calling MBTA's API functions
+ *  
  */
 
 

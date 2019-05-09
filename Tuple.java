@@ -1,4 +1,8 @@
-
+/** @author Pammi Yeung
+ * a data structure used to hold multiple values of generic type
+ *
+ */
+ 
 public class Tuple<A,B> {
 	A first;
 	B second;

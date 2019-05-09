@@ -1,6 +1,17 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * 
+ * @author Pammi Yeung
+ * this classes uses an instance of the StationMap class to translate between 
+ * station names and ids, and end station names and direction ids
+ * 
+ * this class considers the different situations of the request and response received from MBTA
+ * to determine what String to send to the user
+ */
+
+
 public class FormatText {
 
 
@@ -47,7 +58,7 @@ public class FormatText {
 		// if the station is an end station, there will never be arrival times, use departure times instead
 		if (endStop(station)) {
 			if (departures.size() == 0) {
-				toSend = "No predictions available at this time!";
+				toSend = "No predictions available!";
 			}
 			else {
 				toSend = "The upcoming trains will depart from the end station "+ stationDecoded + " at the following times:";

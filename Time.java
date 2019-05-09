@@ -4,6 +4,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+/** 
+ * @author Pammi Yeung
+ * This class serves two functions:
+ * 1) check if the current time is the time specified by the user to receive a text
+ * This is done in compareDates
+ * 2) keep a log of whether a text has been sent for a given time/day/month/year/phone number combination
+ * This is done in sentAlready
+ */
+
 public class Time{
 
 	public static final String inputFormat = "HH:mm";
@@ -18,11 +27,11 @@ public class Time{
 	
 	SimpleDateFormat inputParser = new SimpleDateFormat(inputFormat, Locale.US);
 	
-	public boolean rightTimeToText(String userTime) {
-		return compareDates(userTime) && !sentAlready(userTime);
+	public boolean rightTimeToText(String userTime, String phoneNumber) {
+		return compareDates(userTime) && !sentAlready(userTime, phoneNumber);
 	}
 	
-	private boolean sentAlready(String userTextTime) {
+	private boolean sentAlready(String userTextTime, String phoneNumber) {
 		Calendar now = Calendar.getInstance();
 		int year = now.get(Calendar.YEAR);
 	    int month = now.get(Calendar.MONTH);
@@ -30,9 +39,9 @@ public class Time{
 	    String timeDate = userTextTime+" "+year+" "+month+" "+day;
 	    
 	    // check and remember whether we have sent at the requested time for today
-	    boolean result = log.contains(timeDate);
+	    boolean result = log.contains(timeDate+phoneNumber);
 	    // update the log to show that we have sent the text
-	    log.add(timeDate);
+	    log.add(timeDate+phoneNumber);
 
 	    return result;
 	}

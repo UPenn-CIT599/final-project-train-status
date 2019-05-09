@@ -12,8 +12,8 @@ import javafx.concurrent.Task;
  * This class maintains the state of the program. It contains a hashtable that has all the requests.
  * It has the methods used to add and remove entries to and from the hashtable
  * It also calls the methods of the GetData class to turn each request in 
- * the hashtable into a MBTAReply object, and then used the TextSEnder class' method to sends text messages 
- * to the user using the MBTAReply objects
+ * the hashtable into a MBTAReply object, and then used the TextSender class' method to sends text messages 
+ * to the user
  * 
  */
 public class MBTAService extends ScheduledService<Void> {
@@ -45,7 +45,7 @@ public class MBTAService extends ScheduledService<Void> {
 			String phoneNumber = entry.getKey();
 		    Request request = entry.getValue();
 		    String userTextTime = request.getTextTime();
-		    boolean timeToText = time.rightTimeToText(userTextTime);
+		    boolean timeToText = time.rightTimeToText(userTextTime, phoneNumber);
 		    if (timeToText) {
 			    ArrayList<MBTAReply> replies = getData.crawlMBTA(request);
 			    textSender.sendText(phoneNumber, replies);

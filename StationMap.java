@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -5,15 +6,21 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+/** 
+ * @author Pammi Yeung
+ * This class is a data structure that holds translation between:
+ * 1) direction code (0 or 1) and end station names (see directionDecode HashMap)
+ * 2) station id and the station name (see stationDecode)
+ */
+
 
 public class StationMap {
 
 	HashMap<String, Tuple<Tuple<String, String>, Tuple<String, String>>> directionDecode ;
 	HashMap<String, String> stationDecode;
-	private char[] stationName;
 
 	public HashMap<String, Tuple<Tuple<String, String>, Tuple<String, String>>> getDirectionDecode() {
 		return directionDecode;
@@ -27,7 +34,7 @@ public class StationMap {
 		directionDecode = new HashMap<>();
 		stationDecode = new HashMap<>();
 
-		
+		// directionDecode is hardcoded 
 		directionDecode.put("Red", new Tuple(new Tuple("0","Ashmont/Braintree"), new Tuple("1", "Alewife")));
 		directionDecode.put("Mattapan", new Tuple(new Tuple("0","Mattapan"), new Tuple("1", "Ashmont")));
 		directionDecode.put("Orange", new Tuple(new Tuple("0","Forest Hills"), new Tuple("1", "Oak Grove")));
@@ -37,13 +44,14 @@ public class StationMap {
 		directionDecode.put("Green-E", new Tuple(new Tuple("0","Heath Street"), new Tuple("1", "Lechmere")));
 		directionDecode.put("Blue", new Tuple(new Tuple("0","Bowdoin"), new Tuple("1", "Wonderland")));
 
-		
+		// stationDecode is filled in using an API call
 		createStationDecode("Red");
 		createStationDecode("Blue");
 		createStationDecode("Orange");
 
 	}
 
+	// parse the info returned by API call, and put into stationDecode 
 	private void createStationDecode(String s) {
 		String response = getIDs(s);
 		//create a JSON object with the String response
@@ -74,6 +82,7 @@ public class StationMap {
 		
 	}
 	
+	// takes line as parameter and crawl MBTA to get station names and ids
 	private String getIDs(String line) {
 		URL urlObj;
 		URLConnection yc;

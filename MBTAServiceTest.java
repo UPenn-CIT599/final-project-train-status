@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-/*
+/** @author Pammi Yeung
  *  This is the Junit test class
  *  First test checks that the addEntry method works in the GUI class
  *  Second test checks that the 

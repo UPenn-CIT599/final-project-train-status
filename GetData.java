@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
-/*
- * @author Pammi
+/**
+ * @author Pammi Yeung
  * This interface is created so that a Junit test is possible
  */
 public interface GetData {

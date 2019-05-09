@@ -5,15 +5,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-/*
- *  author Pammi
+/**
+ *  @author Pammi Yeung
  * This class implements the GetData interface 
  * Contains methods to call MBTA's API and return information in the form of MBTAReply
  */
+
 public class GetDataImpl implements GetData {
 	
 	URL urlObj;
@@ -57,6 +57,7 @@ public class GetDataImpl implements GetData {
 
 	}
 	
+	// crawl the API of MBTA and return a String response
 	private String getResponse(Request r) {
 		String urlLine = r.getLine();
 		String urlStation = r.getStation();
@@ -85,6 +86,7 @@ public class GetDataImpl implements GetData {
 		}
 	}
 	
+	// determine if the station is an end station
 	private boolean endStop(String station) {
 		return station == "place-forhl" || station == "place-ogmnl" || station == "place-bomnl" || station == "place-wondl" || 
 				station == "place-alfcl" || station == "place-asmnl";
