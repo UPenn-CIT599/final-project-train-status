@@ -204,33 +204,46 @@ public class Main extends Application {
 		gridPane.setConstraints(label, 0, 8);
 		gridPane.setColumnSpan(label, 2);
 		gridPane.getChildren().add(label);
-
+		
+		
 		button1.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent e) {
-				if ((textField1.getText() != null && !textField1.getText().isEmpty())) {
-					label.setText(textField1.getText() + " " + "thank you for your phone number!");
+				if ((textField1.getText() == null || textField1.getText().isEmpty()
+
+					|| comboBox1.getSelectionModel().isEmpty()
+
+					|| comboBox2.getSelectionModel().isEmpty()
+
+					|| comboBox3.getSelectionModel().isEmpty())
+
+					|| trainHour.getSelectionModel().getSelectedItem().toString() == "Hr"
+
+					|| trainMin.getSelectionModel().getSelectedItem().toString() == "Min"
+
+				) {
+					label.setText("Please enter your phone number and select all the fields.");
+
+				} else {
+
+					label.setText(textField1.getText() + " " + "Thank you for your phone number!");
 					ph = textField1.getText();
 					ln = comboBox1.getSelectionModel().getSelectedItem().toString();
 					dept = comboBox2.getSelectionModel().getSelectedItem().toString();
 					direction = comboBox3.getSelectionModel().getSelectedItem().toString();
 					dtextt = trainHour.getSelectionModel().getSelectedItem().toString() + ":"
-							+ trainMin.getSelectionModel().getSelectedItem().toString();
-
+						+ trainMin.getSelectionModel().getSelectedItem().toString();
 					// create a Request object to hold information
 					Request request = new Request(ln, getId(dept), getDirection(direction), dtextt);
 
 					// add Request object into hashtable stored in MBTAService object
 					service.addEntry(ph, request);
-
-				} else {
-					label.setText("You have not left a phone number.");
+											
 				}
-
 			}
 
 		});
-
+		
 		button2.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
