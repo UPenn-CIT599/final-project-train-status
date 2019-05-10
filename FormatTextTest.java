@@ -58,7 +58,57 @@ class FormatTextTest {
 	}
 	
 	@Test
+	void testNonEndStationMoreThanFiveArrivals() {
+		FormatText ft = new FormatText();
+		ArrayList<MBTAReply> replies = new ArrayList<>();
+		MBTAReply reply1 = new MBTAReply("Orange", "place-dwnxg", "0", "14:04", null);
+		MBTAReply reply2 = new MBTAReply("Orange", "place-dwnxg", "0", "14:09", null);
+		MBTAReply reply3 = new MBTAReply("Orange", "place-dwnxg", "0", "14:21", null);
+		MBTAReply reply4 = new MBTAReply("Orange", "place-dwnxg", "0", "14:31", null);
+		MBTAReply reply5 = new MBTAReply("Orange", "place-dwnxg", "0", "14:36", null);
+		MBTAReply reply6 = new MBTAReply("Orange", "place-dwnxg", "0", "14:39", null);
+		replies.add(reply1);
+		replies.add(reply2);
+		replies.add(reply3);
+		replies.add(reply4);
+		replies.add(reply5);
+		replies.add(reply6);
+		String result = ft.textToSend(replies);
+		String expected = "The upcoming trains will arrive at the Downtown Crossing station at the following times, "
+				+ "going in the Forest Hills direction: 14:04 14:09 14:21 14:31 14:36";
+		assertEquals(result, expected);
+	}
+	
+	@Test
+	void testNonEndStationBothArrivalDeparture() {
+		FormatText ft = new FormatText();
+		ArrayList<MBTAReply> replies = new ArrayList<>();
+		MBTAReply reply1 = new MBTAReply("Orange", "place-dwnxg", "0", "14:04", "14:05");
+		MBTAReply reply2 = new MBTAReply("Orange", "place-dwnxg", "0", "14:09", null);
+		MBTAReply reply3 = new MBTAReply("Orange", "place-dwnxg", "0", "14:21", null);
+		replies.add(reply1);
+		replies.add(reply2);
+		replies.add(reply3);
+		String result = ft.textToSend(replies);
+		String expected = "The upcoming trains will arrive at the Downtown Crossing station at the following times, "
+				+ "going in the Forest Hills direction: 14:04 14:09 14:21";
+		assertEquals(result, expected);
+	}
+	
+	@Test
 	void testNonEndStationNoArrivalPredictions() {
+		FormatText ft = new FormatText();
+		ArrayList<MBTAReply> replies = new ArrayList<>();
+		MBTAReply reply1 = new MBTAReply("Orange", "place-dwnxg", "0", null, "20:08");
+		replies.add(reply1);
+		String result = ft.textToSend(replies);
+		String expected = "No predictions avaialble at this point, the last train just left the "
+				+ "Downtown Crossing station at 20:08, going in the Forest Hills direciton"; 
+		assertEquals(result, expected);
+	}
+	
+	@Test
+	void testNonEndStationNoArrivalNoDeparturePredictions() {
 		FormatText ft = new FormatText();
 		ArrayList<MBTAReply> replies = new ArrayList<>();
 		MBTAReply reply1 = new MBTAReply("Orange", "place-dwnxg", "0", null, null);
@@ -67,6 +117,7 @@ class FormatTextTest {
 		String expected = "No predictions available!";
 		assertEquals(result, expected);
 	}
+
 	
 	
 	

@@ -75,9 +75,5 @@ public class Time{
 	        return new Date(0);
 	    }
 	}
-	
-	public static void main(String[] args) {
-		Time t = new Time();
-		t.compareDates("16:49");
-	}
+
 }

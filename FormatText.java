@@ -82,8 +82,8 @@ public class FormatText {
 		
 		// if the station is not an end station, but arrivals is empty, look at departures and say when the last train departed
 		else if (arrivals.size()==0 && departures.size()>0) {
-			toSend = "No predictions avaialble at this point, the last train just left the " + stationDecoded + " at " + departures.get(0) 
-			+ ", going in the " + directionDecoded + " direction: ";
+			toSend = "No predictions avaialble at this point, the last train just left the " + stationDecoded + " station at " + departures.get(0) 
+			+ ", going in the " + directionDecoded + " direction";
 		}
 		
 		return toSend;
