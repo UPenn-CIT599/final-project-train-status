@@ -1,5 +1,4 @@
-import java.time.Duration;
-import java.util.HashMap;
+
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -8,13 +7,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-//import javax.swing.event.ChangeListener;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -217,9 +214,9 @@ public class Main extends Application {
 
 					|| comboBox3.getSelectionModel().isEmpty())
 
-					|| trainHour.getSelectionModel().getSelectedItem().toString() == "Hr"
+					|| trainHour.getSelectionModel().getSelectedItem().toString().equals("Hr")
 
-					|| trainMin.getSelectionModel().getSelectedItem().toString() == "Min"
+					|| trainMin.getSelectionModel().getSelectedItem().toString().equals("Min")
 
 				) {
 					label.setText("Please enter your phone number and select all the fields.");

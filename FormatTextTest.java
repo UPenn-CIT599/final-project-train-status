@@ -4,6 +4,13 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * 
+ * @author Pammi Yeung
+ * JUnit tests for the FormatText class
+ *
+ */
+
 class FormatTextTest {
 	
 	@Test

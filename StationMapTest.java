@@ -4,11 +4,17 @@ import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * 
+ * @author Pammi Yeung
+ * JUnit tests for the StationMap class
+ *
+ */
 
 class StationMapTest {
 
 	@Test
-	void test1(){
+	void testDirection1(){
 		StationMap sMap = new StationMap();
 		HashMap<String, Tuple<Tuple<String, String>, Tuple<String, String>>> directionDecode = sMap.getDirectionDecode();
 		String direction = directionDecode.get("Red").first.second;
@@ -17,7 +23,7 @@ class StationMapTest {
 	}
 	
 	@Test
-	void test2(){
+	void testDirection2(){
 		StationMap sMap = new StationMap();
 		HashMap<String, Tuple<Tuple<String, String>, Tuple<String, String>>> directionDecode = sMap.getDirectionDecode();
 		String direction = directionDecode.get("Orange").second.second;
@@ -27,7 +33,7 @@ class StationMapTest {
 	
 	
 	@Test
-	void test3(){
+	void testStation1(){
 		StationMap sMap = new StationMap();
 		HashMap<String, String> stationDecode = sMap.getStationDecode();
 		String stationName = stationDecode.get("place-chncl");
@@ -36,7 +42,7 @@ class StationMapTest {
 	}
 	
 	@Test
-	void test4(){
+	void testStaion2(){
 		StationMap sMap = new StationMap();
 		HashMap<String, String> stationDecode = sMap.getStationDecode();
 		String stationName = stationDecode.get("place-davis");

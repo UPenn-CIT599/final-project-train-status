@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 /** @author Pammi Yeung
- *  This is the Junit test class
+ *  This is the Junit test class for the MBTAService class
+ *  
  *  First test checks that the addEntry method works in the GUI class
- *  Second test checks that the 
+ *  
+ *  Second test checks that when the send() method is called, crawlMBTA and 
+ *  the boolean that indicates whether it is time to send a text are working correctly
  */
 
 class MBTAServiceTest {
@@ -38,7 +41,7 @@ class MBTAServiceTest {
 		  };
 		  
 		MBTAService service = new MBTAService(getData, textSender);
-		Request req = new Request("Red", "place-davis", "0", "08:05");
+		Request req = new Request("Red", "place-davis", "0", "03:05");
 		
 		// call the addEntry method
 		service.addEntry("6171234567",req);
@@ -58,8 +61,8 @@ class MBTAServiceTest {
 		HashMap<String,MBTAReply> expectedSentHash = new HashMap<>();
 		
 		// line below is commented out tom keep exepectedSentHash null
-		// because the send() method checks if the current time is 08:05
-		// unless this MBTAServiceTest program is being run at exactly 08:05,
+		// because the send() method checks if the current time is 03:05
+		// unless this MBTAServiceTest program is being run at exactly 03:05,
 		// the timeToText boolean will be false and the crawlMBTA and sendText methods will not be called
 		
 		//expectedSentHash.put("6171234567",new MBTAReply("Red", "place-alfcl", "0", null, "13:05"));
