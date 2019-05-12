@@ -4,7 +4,7 @@ Members are Shifang Wang and Kai Kwan Pammi Yeung
 Train Reminder Program
 
 Purpose
-The goal of this project is to design a train reminder program. It will send messages to reminder the users of the next five arrival time of the train when the users fill in his phone number, select the desired train line, departure station, destination directon and text time, and click the "Submit" button.
+The goal of this project is to design a train reminder program. It will send messages to reminder the users of the next five arrival time of the train when the users fill in their phone number, select the desired train line, departure station, destination directon and text time, and click the "Submit" button.
 
 1)   We use JavaFX GUI to create a user interface. 
      The GUI includes: 
