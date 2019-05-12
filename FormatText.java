@@ -21,8 +21,8 @@ public class FormatText {
 	public String textToSend(ArrayList<MBTAReply> replies) {
 		
 		// if the API call did not return and information
-		if (replies == null) {
-			return "No predictions available at this time!";
+		if (replies.size()==0) {
+			return "No predictions available!";
 		}
 		
 		String toSend = "";
@@ -61,7 +61,7 @@ public class FormatText {
 				toSend = "No predictions available!";
 			}
 			else {
-				toSend = "The upcoming trains will depart from the end station "+ stationDecoded + " at the following times:";
+				toSend = "The upcoming trains will depart from the end station "+ stationDecoded + " at the following times: ";
 			
 				for (int i = 0; i < Math.min(departures.size(), 5); i++) {
 					toSend += departures.get(i);
@@ -84,6 +84,11 @@ public class FormatText {
 		else if (arrivals.size()==0 && departures.size()>0) {
 			toSend = "No predictions avaialble at this point, the last train just left the " + stationDecoded + " station at " + departures.get(0) 
 			+ ", going in the " + directionDecoded + " direction";
+		}
+		
+		// if the station is not an end station, but both arrivals and departures are empty
+		else if (arrivals.size()==0 && departures.size()==0) {
+			toSend = "No predictions available!";
 		}
 		
 		return toSend;

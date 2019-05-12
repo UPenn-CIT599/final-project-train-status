@@ -1,11 +1,15 @@
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
+import java.util.Scanner;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -45,9 +49,9 @@ public class StationMap {
 		directionDecode.put("Blue", new Tuple(new Tuple("0","Bowdoin"), new Tuple("1", "Wonderland")));
 
 		// stationDecode is filled in using an API call
-		createStationDecode("Red");
-		createStationDecode("Blue");
-		createStationDecode("Orange");
+		createStationDecode("red");
+		createStationDecode("blue");
+		createStationDecode("orange");
 
 	}
 
@@ -84,31 +88,21 @@ public class StationMap {
 	
 	// takes line as parameter and crawl MBTA to get station names and ids
 	private String getIDs(String line) {
-		URL urlObj;
-		URLConnection yc;
-		BufferedReader in;
 		
-		String fullURL = "https://api-v3.mbta.com/stops?filter[route]="+line;
-
+		String result = new String();
+		File f = new File("./src/"+line+"-line.json");
+		
 		try {
-			urlObj = new URL(fullURL);
-			yc = urlObj.openConnection();
-			in = new BufferedReader(new InputStreamReader(
-					yc.getInputStream()));
-			String inputLine;
-			StringBuffer response = new StringBuffer();
-
-			while ((inputLine = in.readLine()) != null) {
-				response.append(inputLine);
+			Scanner s = new Scanner(f);
+			while (s.hasNext()) {
+				result += s.nextLine();
 			}
-			in.close();
-			return response.toString();
-
-		} catch (MalformedURLException e) {
-			throw new IllegalArgumentException("Invalid url: " + fullURL, e);
-		} catch (IOException e) {
+			s.close();
+		} catch (FileNotFoundException e) {
 			throw new RuntimeException(e);
 		}
+		return result;
+		
 	}
 	
 	
