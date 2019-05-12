@@ -1,0 +1,27 @@
+Final Project Proposal for OMCIT 591 Spring 2019
+Members are Shifang Wang and Kai Kwan Pammi Yeung
+
+Train Reminder Program
+
+Purpose
+The overall goal of this project is to design a train reminder program. It will send messages to reminder the users of the next five arrival time of the train when the user fills in his phone number and selects the desired train line, departure station, destination directon and desired text time.
+
+1)   We use JavaFX GUI to create a user interface. 
+     The GUI includes: 
+	Phone number
+	Line (Red Line, Blue Line, Orange Line)
+	Departure station 
+	Destination direction (each Line has two directions)
+	Desired text time (when the user will receive the text about the next five trains’ arrival time)
+	The “Submit” button will submit all the user’s input to our program.
+	The “Clear” button will empty user’s inputted phone number and selected items.
+2)   We use the API of MBTA(Massachusetts Bay Transportation Authority) to get the real-time train schedule.
+     https://www.mbta.com/schedules/subway
+3)   We use Twilio to send text messages.
+
+Work breakdown:
+Shifang did front-end development in JAVA to create a user interface to collect the user’s input.
+Pammi did back-end development in JAVA to call API from MBTA and send text message through Twilio.
+
+Github repository:
+https://github.com/UPenn-CIT599/final-project-train-status
