@@ -1,10 +1,10 @@
-Final Project Proposal for OMCIT 591 Spring 2019
-Members are Shifang Wang and Kai Kwan Pammi Yeung
+Final Project Summary for OMCIT 591 Spring 2019
+Shifang Wang and Kai Kwan Pammi Yeung
 
-Train Reminder Program
+Train Reminder Text App
 
 Purpose
-The goal of this project is to design a train reminder program. It will send messages to reminder the users of the next five arrival time of the train when the users fill in their phone number, select the desired train line, departure station, destination directon and text time, and click the "Submit" button.
+The goal of this project is to design a train reminder text program. It will send messages to reminder the users of the next five arrival time of the train when the users fill in their phone number, select the desired train line, departure station, destination directon and text time, and click the "Submit" button.
 
 1)   We use JavaFX GUI to create a user interface. 
      The GUI includes: 
