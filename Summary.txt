@@ -14,7 +14,7 @@ The goal of this project is to design a train reminder program. It will send mes
 	Destination direction (each Line has two directions)
 	Desired text time (when the user will receive the text about the next five trains’ arrival time)
 	The “Submit” button will submit all the user’s input to our program.
-	The “Clear” button will empty user’s inputted phone number and selected items.
+	The “Clear” button will empty user’s inputted phone number and selected items so that the user can reenter his information in GUI.
 2)   We use the API of MBTA(Massachusetts Bay Transportation Authority) to get the real-time train schedule.
      https://www.mbta.com/schedules/subway
 3)   We use Twilio to send text messages.
