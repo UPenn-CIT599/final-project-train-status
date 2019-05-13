@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 class StationMapTest {
 
 	@Test
-	void testDirection1(){
+	void testDirectionRed(){
 		StationMap sMap = new StationMap();
 		HashMap<String, Tuple<Tuple<String, String>, Tuple<String, String>>> directionDecode = sMap.getDirectionDecode();
 		String direction = directionDecode.get("Red").first.second;
@@ -23,7 +23,7 @@ class StationMapTest {
 	}
 	
 	@Test
-	void testDirection2(){
+	void testDirectionOrange(){
 		StationMap sMap = new StationMap();
 		HashMap<String, Tuple<Tuple<String, String>, Tuple<String, String>>> directionDecode = sMap.getDirectionDecode();
 		String direction = directionDecode.get("Orange").second.second;
@@ -33,7 +33,16 @@ class StationMapTest {
 	
 	
 	@Test
-	void testStation1(){
+	void testDirectionBlue(){
+		StationMap sMap = new StationMap();
+		HashMap<String, Tuple<Tuple<String, String>, Tuple<String, String>>> directionDecode = sMap.getDirectionDecode();
+		String direction = directionDecode.get("Blue").second.second;
+		String expectedDirection = "Wonderland";
+		assertEquals(expectedDirection,direction);
+	}
+	
+	@Test
+	void testStationOrange(){
 		StationMap sMap = new StationMap();
 		HashMap<String, String> stationDecode = sMap.getStationDecode();
 		String stationName = stationDecode.get("place-chncl");
@@ -42,11 +51,22 @@ class StationMapTest {
 	}
 	
 	@Test
-	void testStaion2(){
+	void testStaionRed(){
 		StationMap sMap = new StationMap();
 		HashMap<String, String> stationDecode = sMap.getStationDecode();
 		String stationName = stationDecode.get("place-davis");
 		String expected= "Davis";
+		assertEquals(expected, stationName);
+		
+	}
+	
+
+	@Test
+	void testStaionBlue(){
+		StationMap sMap = new StationMap();
+		HashMap<String, String> stationDecode = sMap.getStationDecode();
+		String stationName = stationDecode.get("place-aqucl");
+		String expected= "Aquarium";
 		assertEquals(expected, stationName);
 		
 	}

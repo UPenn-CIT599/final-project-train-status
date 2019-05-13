@@ -1,6 +1,8 @@
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Calendar;
+
 import org.junit.jupiter.api.Test;
 
 /** @author Pammi Yeung
@@ -25,7 +27,7 @@ class MBTAServiceTest {
 			@Override
 			public ArrayList<MBTAReply> crawlMBTA(Request r) {
 				ArrayList<MBTAReply> replies = new ArrayList<>();
-				replies.add(new MBTAReply("Red", "place-alfcl", "0", null, "13:05"));
+				replies.add(new MBTAReply("Red", "place-davis", "0", null, "13:05"));
 				return replies;
 			}
 			  
@@ -40,8 +42,13 @@ class MBTAServiceTest {
 			  
 		  };
 		  
+		  Calendar now = Calendar.getInstance();
+			int hour = now.get(Calendar.HOUR_OF_DAY);
+			int minute = now.get(Calendar.MINUTE);
+			String currentTime = Integer.toString(hour) + ":" + Integer.toString(minute);
+			
 		MBTAService service = new MBTAService(getData, textSender);
-		Request req = new Request("Red", "place-davis", "0", "03:05");
+		Request req = new Request("Red", "place-davis", "0", currentTime);
 		
 		// call the addEntry method
 		service.addEntry("6171234567",req);
@@ -65,7 +72,8 @@ class MBTAServiceTest {
 		// unless this MBTAServiceTest program is being run at exactly 03:05,
 		// the timeToText boolean will be false and the crawlMBTA and sendText methods will not be called
 		
-		//expectedSentHash.put("6171234567",new MBTAReply("Red", "place-alfcl", "0", null, "13:05"));
+		
+		expectedSentHash.put("6171234567",new MBTAReply("Red", "place-davis", "0", null, "13:05"));
 		
 		// expect the crawlMBTA and sendText methods to not be called 
 		assertEquals(expectedSentHash, sentTexts);
